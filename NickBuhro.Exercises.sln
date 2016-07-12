@@ -14,8 +14,30 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "other", "other", "{C21E3784
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NickBuhro.Exercises.ProjectEuler", "NickBuhro.Exercises.ProjectEuler\NickBuhro.Exercises.ProjectEuler.csproj", "{9C39B435-086E-4FA1-A030-5C3817E97787}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NickBuhro.Exercises.ProjectEulerTests", "NickBuhro.Exercises.ProjectEulerTests\NickBuhro.Exercises.ProjectEulerTests.csproj", "{89DB95B3-F955-4B67-B6C1-3B27545143C3}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9C39B435-086E-4FA1-A030-5C3817E97787}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C39B435-086E-4FA1-A030-5C3817E97787}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C39B435-086E-4FA1-A030-5C3817E97787}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C39B435-086E-4FA1-A030-5C3817E97787}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89DB95B3-F955-4B67-B6C1-3B27545143C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89DB95B3-F955-4B67-B6C1-3B27545143C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89DB95B3-F955-4B67-B6C1-3B27545143C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89DB95B3-F955-4B67-B6C1-3B27545143C3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9C39B435-086E-4FA1-A030-5C3817E97787} = {89F60698-DE3C-4EC3-A5FD-2403C48F9241}
+		{89DB95B3-F955-4B67-B6C1-3B27545143C3} = {CD947B48-D43A-4380-9140-FD44F6D0A9A9}
 	EndGlobalSection
 EndGlobal
