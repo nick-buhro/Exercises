@@ -64,6 +64,18 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Problem001Tests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NickBuhro.Exercises.ProjectEuler\NickBuhro.Exercises.ProjectEuler.csproj">
+      <Project>{9c39b435-086e-4fa1-a030-5c3817e97787}</Project>
+      <Name>NickBuhro.Exercises.ProjectEuler</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
