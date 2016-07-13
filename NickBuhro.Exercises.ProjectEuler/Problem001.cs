@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+﻿using System;
 using Xunit;
 
 namespace NickBuhro.Exercises.ProjectEuler
@@ -11,26 +11,21 @@ namespace NickBuhro.Exercises.ProjectEuler
     /// 
     /// Find the sum of all the multiples of 3 or 5 below 1000. 
     /// 
-    /// <seealso cref="https://projecteuler.net/problem=1"/>
+    /// <seealso href="https://projecteuler.net/problem=1"/>
     /// </summary>
     public sealed class Problem001
     {
-        private const int Answer = 233168;
-
-        [Fact]
-        public void WellKnownTest()
+        [Theory]
+        [InlineData(10, 23)]
+        [InlineData(1000, 233168)]
+        public void Test(int below, int expectedAnswer)
         {
-            Assert.Equal(23, GetAnswer(10));
-        }
-
-        [Fact]
-        public void FinalTest()
-        {
-            Assert.Equal(Answer, GetAnswer(1000));
+            var actual = GetFastAnswer(below);
+            Assert.Equal(expectedAnswer, actual);
         }
         
 
-        public int GetAnswer(int below)
+        public static int GetAnswer(int below = 1000)
         {
             var result = 0;
             for (var i = 3; i < below; i++)
@@ -41,6 +36,18 @@ namespace NickBuhro.Exercises.ProjectEuler
                 }
             }
             return result;
+        }
+
+
+        public static int GetFastAnswer(int below = 1000)
+        {
+            var getSum = new Func<int, int>(multiplier =>
+            {
+                var count = (below - 1) / multiplier;
+                return multiplier * count * (count + 1) / 2;
+            });
+
+            return getSum(3) + getSum(5) - getSum(15);
         }
     }
 }
