@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
+using Xunit;
 
 namespace NickBuhro.Exercises.ProjectEuler
 {
@@ -19,7 +15,22 @@ namespace NickBuhro.Exercises.ProjectEuler
     /// </summary>
     public sealed class Problem001
     {
-        public string GetAnswer(int below)
+        private const int Answer = 233168;
+
+        [Fact]
+        public void WellKnownTest()
+        {
+            Assert.Equal(23, GetAnswer(10));
+        }
+
+        [Fact]
+        public void FinalTest()
+        {
+            Assert.Equal(Answer, GetAnswer(1000));
+        }
+        
+
+        public int GetAnswer(int below)
         {
             var result = 0;
             for (var i = 3; i < below; i++)
@@ -29,7 +40,7 @@ namespace NickBuhro.Exercises.ProjectEuler
                     result += i;
                 }
             }
-            return result.ToString(CultureInfo.InvariantCulture);
+            return result;
         }
     }
 }
