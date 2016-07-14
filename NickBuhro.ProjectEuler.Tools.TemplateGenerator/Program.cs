@@ -5,7 +5,7 @@ namespace NickBuhro.ProjectEuler.Tools.TemplateGenerator
 {
     internal static class Program
     {
-        private const int ProblemCount = 566; //566;
+        private const int ProblemCount = 1; //566;
         
         private static void Main()
         {

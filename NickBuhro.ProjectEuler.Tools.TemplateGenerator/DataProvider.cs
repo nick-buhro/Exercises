@@ -61,7 +61,7 @@ namespace NickBuhro.ProjectEuler.Tools.TemplateGenerator
             var match = _rxName.Match(html);
             return match.Success
                 ? HtmlToText(match.Groups[1].Value)
-                : "";
+                : ";
         }
 
         private string GetProblemDescr(string html)
