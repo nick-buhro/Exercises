@@ -30,10 +30,10 @@ namespace NickBuhro.ProjectEuler.Tools.TemplateGenerator
         private static string GenerateDescriptionComment(string descr)
         {
             if (string.IsNullOrEmpty(descr))
-                return ";
+                return "";
 
             var strs = descr.Split(new[] {"\r\n", "\n"}, StringSplitOptions.None).Select(s => "    /// " + s + Environment.NewLine);
-            return string.Join(", strs);
+            return string.Join("", strs);
         }
 
         private const string ClassTemplate = @"using System;
@@ -46,7 +46,7 @@ namespace NickBuhro.Exercises.ProjectEuler
     /// {ProblemName}
     /// 
 {Descr}    ///
-    /// <seealso href="{Url}"/>
+    /// <seealso href=""{Url}""/>
     /// </summary>
     public sealed class {ClassName}
     {            

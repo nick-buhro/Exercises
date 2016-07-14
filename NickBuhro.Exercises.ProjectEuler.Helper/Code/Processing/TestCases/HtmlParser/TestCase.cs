@@ -12,7 +12,7 @@ namespace NickBuhro.Exercises.ProjectEuler.Helper.Code.Processing.TestCases.Html
             RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Singleline);
 
         private static readonly Regex DescrRegex = new Regex(
-            "<!--<(.+?)>-->",
+            "<!--<<(.+?)>>-->",
             RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Singleline);
 
         public readonly string Html;

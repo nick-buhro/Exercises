@@ -85,6 +85,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Code\Processing\TestCases\HtmlParser\TestCase001.html" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Code\Processing\TestCases\HtmlParser\TestCase005.html" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

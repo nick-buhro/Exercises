@@ -67,6 +67,7 @@ namespace NickBuhro.Exercises.ProjectEuler.Helper.Code.Processing
 
         [Theory]
         [InlineData(1)]
+        [InlineData(5)]
         public void Test(int testCaseId)
         {
             var testCase = new TestCase(testCaseId);
