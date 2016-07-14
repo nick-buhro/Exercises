@@ -5,7 +5,7 @@ namespace NickBuhro.ProjectEuler.Tools.TemplateGenerator
 {
     internal static class Program
     {
-        private const int ProblemCount = 10; //566;
+        private const int ProblemCount = 566; //566;
         
         private static void Main()
         {
@@ -24,6 +24,8 @@ namespace NickBuhro.ProjectEuler.Tools.TemplateGenerator
 
                 for (var i = 1; i <= ProblemCount; i++)
                 {
+                    Console.WriteLine("Problem {0,3} in progress...", i);
+
                     var problem = provider.GetProblem(i);
                     generator.Generate(problem);
                 }

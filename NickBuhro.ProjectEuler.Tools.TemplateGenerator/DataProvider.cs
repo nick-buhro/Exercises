@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using HtmlAgilityPack;
 
 namespace NickBuhro.ProjectEuler.Tools.TemplateGenerator
 {
@@ -19,21 +18,21 @@ namespace NickBuhro.ProjectEuler.Tools.TemplateGenerator
             "<h2>(.+?)</h2>", 
             RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Singleline);
 
-        private readonly Regex _rxDescr = new Regex(
-            "<div class=\"problem_content\" role=\"problem\">(.+?)</div>", 
-            RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Singleline);
-
-        private readonly Regex _rxDescrParagraph = new Regex(
-            "<p[^>]*>(.+?)</p>",
-            RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Singleline);
-
         private readonly Regex _rxTag = new Regex(
             "<(.+?)>",
             RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Singleline);
 
+        private readonly Regex _rxDiv = new Regex(
+            "<sup>(\\d+)</sup>/<sub>(\\d+)</sub>",
+            RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Singleline);
+
+        private readonly Regex _rxPow = new Regex(
+            "\\s*<sup>(\\d+)</sup>",
+            RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Singleline);
+        
         public DataProvider()
         {
-            _web = new WebClient();
+            _web = new WebClient {Encoding = Encoding.UTF8};
         }
 
         public void Dispose()
@@ -51,37 +50,67 @@ namespace NickBuhro.ProjectEuler.Tools.TemplateGenerator
 
             var html = _web.DownloadString(result.Url);
 
-            var match = _rxName.Match(html);
-            if (match.Success)
-            {
-                result.Name = match.Groups[1].Value.Trim();
-            }
-
-            match = _rxDescr.Match(html);
-            if (match.Success)
-            {
-                var innerHtml = match.Groups[1].Value;
-                var matches = _rxDescrParagraph.Matches(innerHtml);
-
-                var sb = new StringBuilder();
-                foreach (Match m in matches)
-                {
-                    if (sb.Length != 0)
-                        sb.AppendLine();
-
-                    var line = m.Groups[1].Value;
-                    line = _rxTag.Replace(line, " ")
-                        .Replace("  ", " ")
-                        .Replace(". ", "." + Environment.NewLine)
-                        .Trim();
-
-                    sb.AppendLine(line);
-                }
-
-                result.Description = sb.ToString();
-            }
+            result.Name = GetProblemName(html);
+            result.Description = GetProblemDescr(html);
 
             return result;
+        }
+
+        private string GetProblemName(string html)
+        {
+            var match = _rxName.Match(html);
+            return match.Success
+                ? HtmlToText(match.Groups[1].Value)
+                : "";
+        }
+
+        private string GetProblemDescr(string html)
+        {
+            var doc = new HtmlDocument();
+            doc.LoadHtml(html);
+
+            var div = doc.DocumentNode.SelectNodes("//div")
+                .First(n => n.Attributes.Any(a => (a.Name == "class") && (a.Value == "problem_content")));
+
+            var result = new StringBuilder();
+            foreach (var child in div.ChildNodes)
+            {
+                if (child.Name == "#text")
+                    continue;
+
+                var text = HtmlToText(child.InnerHtml)
+                    //.Replace(". ", "." + Environment.NewLine)
+                    ;
+
+                if (result.Length > 0)
+                    result.AppendLine();
+                result.AppendLine(text);
+            }
+            return result.ToString().Trim();
+        }
+
+
+        private string HtmlToText(string html)
+        {
+            var result = html
+                .Replace("Г—", "*")
+                .Replace(Environment.NewLine, " ")
+                .Replace('\n', ' ')
+                .Replace('\r', ' ')
+                .Replace("<br>", Environment.NewLine)
+                .Replace("<br/>", Environment.NewLine);
+
+            
+
+            result = _rxDiv.Replace(result, "$1/$2");
+            result = _rxPow.Replace(result, "**$1");
+            result = _rxTag.Replace(result, " ");
+
+            return result
+                .Replace(Environment.NewLine + " ", Environment.NewLine)
+                .Replace("  ", " ")
+                .Replace("  ", " ")
+                .Trim();
         }
     }
 }

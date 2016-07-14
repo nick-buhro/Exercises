@@ -45,22 +45,22 @@ namespace NickBuhro.Exercises.ProjectEuler
     /// <summary>
     /// {ProblemName}
     /// 
-{Descr}    /// <seealso href=""{Url}""/>
+{Descr}    ///
+    /// <seealso href=""{Url}""/>
     /// </summary>
     public sealed class {ClassName}
-        {            
-            public void Test()
-            {
+    {            
+        public void Test()
+        {
                 
-            }
+        }
 
-
-            public static long GetAnswer()
-            {
-                throw new NotImplementedException();
-            }
+        public static long GetAnswer()
+        {
+            throw new NotImplementedException();
         }
     }
+}
 ";
     }
 }
