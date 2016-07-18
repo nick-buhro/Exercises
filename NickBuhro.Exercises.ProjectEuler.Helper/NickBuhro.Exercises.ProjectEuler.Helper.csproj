@@ -67,7 +67,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\ProblemModel.cs" />
+    <Compile Include="Code\Processing\ClassGenerator.cs" />
+    <Compile Include="Code\Processing\ClassGeneratorImpl.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ClassGeneratorImpl.tt</DependentUpon>
+    </Compile>
     <Compile Include="Code\Processing\Downloader.cs" />
+    <Compile Include="Code\Processing\FileSaver.cs" />
     <Compile Include="Code\Processing\HtmlParser.cs" />
     <Compile Include="Code\Processing\TestCases\HtmlParser\TestCase.cs" />
     <Compile Include="Code\Program.cs" />
@@ -80,6 +87,7 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +95,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Code\Processing\TestCases\HtmlParser\TestCase005.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Code\Processing\ClassGeneratorImpl.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>ClassGeneratorImpl.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
