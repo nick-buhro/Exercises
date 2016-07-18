@@ -66,10 +66,12 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnswerNotFoundException.cs" />
     <Compile Include="Problem004.cs" />
     <Compile Include="Problem001.cs" />
     <Compile Include="Problem003.cs" />
     <Compile Include="Problem002.cs" />
+    <Compile Include="Problem005.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
