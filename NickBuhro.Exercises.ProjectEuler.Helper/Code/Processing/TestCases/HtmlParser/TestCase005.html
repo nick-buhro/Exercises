@@ -1,0 +1,131 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Colin Hughes" />
+    <meta name="description" content="A website dedicated to the fascinating world of mathematics and programming" />
+    <meta name="keywords" content="programming,mathematics,problems,puzzles" />
+    <title>Problem 5 - Project Euler</title>
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="themes/default/style_default.css" />
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+        inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+        displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
+        processEscapes: true
+        },
+        "HTML-CSS": { availableFonts: ["TeX"] }
+        });
+    </script>
+    <!--[if !IE]><!-->
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full,Safe"></script>
+    <!--<![endif]-->
+    <!--[if IE]>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/2.4-latest/MathJax.js?config=TeX-AMS_HTML-full,Safe"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="container">
+        <div id="header" class="noprint">
+            <div id="nav" class="noprint">
+                <ul>
+                    <li><a href="about" title="About" accesskey="h">About</a></li>
+                    <li id="current"><a href="archives" title="Archives" accesskey="1">Archives</a></li>
+                    <li><a href="recent" title="Recent" accesskey="2">Recent</a></li>
+                    <li><a href="progress" title="Progress" accesskey="3">Progress</a></li>
+                    <li><a href="account" title="Account" accesskey="4"><span Id="highlight">Account</span></a></li>
+                    <li><a href="news" title="News" accesskey="5">News</a></li>
+                    <li><a href="friends" title="Friends" accesskey="6">Friends</a></li>
+                    <li><a href="statistics" title="Statistics" accesskey="7">Statistics</a></li>
+                    <li><a href="sign_out=CQ0cbJITP71QbRJc" title="Sign Out" accesskey="8">Sign Out</a></li>
+                </ul>
+            </div>
+
+            <div id="logo" class="noprint">
+                <div>Project Euler<span>.net</span></div>
+            </div>
+        </div>
+
+        <div id="info_panel"><div>Logged in as <strong>nick88</strong><br />Thu, 14 Jul 2016, 17:34</div><a href="rss2_euler.xml"><img src="images/icon_rss.png" alt="RSS Feed" title="RSS Feed" /></a><span class="info" style="cursor:pointer;"><a href="secure=9JqvClxqFdXNykyM"><img src="images/icon_lock.png" alt="secure_icon" /></a><span style="color:#070;font-weight:bold;text-align:left;width:250px;right:10px;">You are currently using a secure connection</span></span></div>
+        <div id="content">
+            <table id="show_problem_table" class="noprint">
+                <tr>
+                    <td><div id="previous_problem"><a href="problem=4" class="info"><span>Go to problem 4 (Solved):<br />&quot;Largest palindrome product&quot;</span><img src="images/icon_back_solved.png" alt="Previous" /></a></div></td>
+                    <td><div id="next_problem"><a href="problem=6" class="info"><span>Go to problem 6 (Unsolved):<br />&quot;Sum square difference&quot;</span><img src="images/icon_next.png" alt="Next" /></a></div></td>
+                </tr>
+            </table>
+            <div style="text-align: center;" class="print"><img src="images/print_page_logo.png" alt="projecteuler.net" style="border: none;"/>
+            </div>
+            <!--{{Smallest multiple}}-->
+            <h2>Smallest multiple</h2><div id="problem_info" class="info"><h3>Problem 5</h3><span>Published on Friday, 30th November 2001, 06:00 pm; Solved by 316098; Difficulty rating: 5%</span></div>
+            <!--<<
+            2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+
+            What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+            >>-->
+            <div class="problem_content" role="problem">
+                <p>2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.</p>
+                <p>What is the smallest positive number that is <dfn title="divisible with no remainder">evenly divisible</dfn> by all of the numbers from 1 to 20?
+                </p>
+
+            </div><br />
+            <div style="text-align:center;" class="noprint">
+                <form name="form" method="post" action="problem=5">
+                    <table width="400" cellpadding="10" align="center">
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td><div style="text-align:right;">Answer:</div></td>
+                                        <td style="text-align:left;">
+                                            <div style="text-align:left;"><input size="20" type="text" name="guess_5" id="guess" maxlength="30" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">            </td>
+                                    </tr>
+                                    <tr>
+                                        <td><div style="text-align:right;">Confirmation Code:</div></td>
+                                        <td><div style="text-align:left;"><input type="text" size="5" maxlength="5" autocomplete="off" name="captcha" /></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div style="text-align:center;font-size:80%;">
+                                                <img src="captcha/show_captcha.php" id="captcha_image" onclick="javascript:this.src='captcha/show_captcha.php?'+Math.random();" style="border:1px solid #999;" /><br />Click image for new code
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td style="text-align:left;"><input type="submit" value="Check" /></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <script type="text/javascript">
+document.getElementById('guess').focus();
+scroll(0,0);
+            </script>
+        </div>
+
+        <div id="footer" class="noprint">
+            Project Euler: <a href="copyright">Copyright Information</a> | <a href="privacy">Privacy Policy</a>
+            <!--/Creative Commons License-->
+            <!-- <rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+            <Work rdf:about="">
+               <license rdf:resource="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/" />
+            <dc:type rdf:resource="http://purl.org/dc/dcmitype/Text" />
+            </Work>
+            <License rdf:about="http://creativecommons.org/licenses/by-nc-sa/2.0/uk/"><permits rdf:resource="http://web.resource.org/cc/Reproduction"/><permits rdf:resource="http://web.resource.org/cc/Distribution"/><requires rdf:resource="http://web.resource.org/cc/Notice"/><requires rdf:resource="http://web.resource.org/cc/Attribution"/><prohibits rdf:resource="http://web.resource.org/cc/CommercialUse"/><permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/><requires rdf:resource="http://web.resource.org/cc/ShareAlike"/></License></rdf:RDF> -->
+        </div>
+    </div>
+</body>
+</html>
