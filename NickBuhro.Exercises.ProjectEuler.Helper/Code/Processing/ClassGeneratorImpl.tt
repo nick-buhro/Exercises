@@ -6,24 +6,27 @@
 using System;
 using Xunit;
 
-/// <summary>
-/// <#= _problem.Name #>
-/// 
+namespace NickBuhro.Exercises.ProjectEuler
+{
+    /// <summary>
+    /// <#= _problem.Name #>
+    /// 
 <# foreach (var s in GetDescrLines()) { #>
-/// <#= s #>
+    /// <#= s #>
 <# } #>
-///
-/// <seealso href="<#= _problem.Url #>"/>
-/// </summary>
-public sealed class <#= _problem.ClassName #>
-{            
-    public void Test()
-    {
-            
-    }
+    ///
+    /// <seealso href="<#= _problem.Url #>"/>
+    /// </summary>
+    public sealed class <#= _problem.ClassName #>
+    {            
+        public void Test()
+        {
+    
+        }
 
-    public static long GetAnswer()
-    {
-        throw new NotImplementedException();
+        public static long GetAnswer()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
