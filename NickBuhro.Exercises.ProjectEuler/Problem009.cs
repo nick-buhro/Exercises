@@ -29,30 +29,38 @@ namespace Euler
             Assert.Equal(Answer, actual);
         }
 
-        public static string GetAnswer()
+        [Fact]
+        public void WellKnownTest()
         {
-            // a + b + c = 1000
-            // a ≤ b < c < a+b
+            // 3*3 + 4*4 = 5*5
+            var actual = GetAnswer(12); // 12 = 3 + 4 + 5
+            Assert.Equal("60", actual); // 60 = 3 * 4 * 5
+        }
 
-            // a < 1000/3
-            for (var a = 1; a <= 333; a++)
+        public static string GetAnswer(int s = 1000)
+        {
+            // a + b + c = s
+            // a ≤ b < c < a+b
+            
+            var aHiLimit = s/3;
+            for (var a = 1; a <= aHiLimit; a++)
             {
                 // c  <  a + b
                 // b  >  c - a
-                // b  >  (1000 - b - a) - a
-                // 2b >  1000 - 2a
-                // b  >  500 - a 
-                var bLoLimit = 500 - a;
+                // b  >  (s - b - a) - a
+                // 2b >  s - 2a
+                // b  >  s/2 - a 
+                var bLoLimit = (s >> 1) - a;
 
                 // b  <  c
-                // b  <  1000 - b - a
-                // 2b <  1000 - a
-                // b  <  500 - a/2
-                var bHiLimit = 500 - (a >> 1);
+                // b  <  s - b - a
+                // 2b <  s - a
+                // b  <  (s - a)/2
+                var bHiLimit = (s - a) >> 1;
 
                 for (var b = bLoLimit; b <= bHiLimit; b++)
                 {
-                    var c = 1000 - (a + b);
+                    var c = s - (a + b);
                     if ((a*a + b*b) == (c*c))
                     {
                         return (a*b*c).ToString(CultureInfo.InvariantCulture);
