@@ -60,17 +60,18 @@ namespace Euler
             var iLimit = Number.Length - count;
             for (var i = 0; i <= iLimit; i++)
             {
-                long product = Number[i];
-                for (var j = (count - 1); j > 0; j--)
+                var maxShift = count - 1;
+                long product = Number[i + maxShift];
+                
+                if (product == 0)
+                {
+                    i += maxShift;
+                    continue;
+                }
+                
+                for (var j = 0; j < maxShift; j++)
                 {
                     var digit = Number[i + j];
-                    if (digit == 0)
-                    {
-                        // Optimization - move i after the 0
-                        product = 0;
-                        i += j;
-                        break;
-                    }
                     product *= digit;
                 }
 
