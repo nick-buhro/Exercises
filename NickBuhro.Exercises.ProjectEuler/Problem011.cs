@@ -55,17 +55,21 @@ namespace Euler
             {
                 for (var y = 0; y < 20; y++)
                 {
+                    // Vertical direction
                     var product = M[x][y]*M[x + 1][y]*M[x + 2][y]*M[x + 3][y];
                     maxProduct = Math.Max(product, maxProduct);
 
+                    // Horizontal direction
                     product = M[y][x] * M[y][x + 1] * M[y][x + 2] * M[y][x + 3];
                     maxProduct = Math.Max(product, maxProduct);
 
                     if (y < 17)
                     {
+                        // First diag direction
                         product = M[x][y]*M[x + 1][y + 1]*M[x + 2][y + 2]*M[x + 3][y + 3];
                         maxProduct = Math.Max(product, maxProduct);
 
+                        // Second diag direction
                         product = M[x+3][y] * M[x + 2][y + 1] * M[x + 1][y + 2] * M[x][y + 3];
                         maxProduct = Math.Max(product, maxProduct);
                     }
