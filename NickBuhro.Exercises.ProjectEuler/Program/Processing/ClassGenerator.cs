@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Euler.Program.Templating;
 
 namespace Euler.Program.Processing
 {
-    public sealed class ClassGenerator
+    internal sealed class ClassGenerator
     {
         public void Process(ProblemModel problem)
         {
@@ -14,7 +13,7 @@ namespace Euler.Program.Processing
     }
 
 
-    partial class ClassGeneratorImpl
+    internal partial class ClassGeneratorImpl
     {
         private readonly ProblemModel _problem;
 

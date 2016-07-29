@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace Euler.Program.Processing.TestCases.HtmlParser
 {
-    public sealed class TestCase
+    internal sealed class TestCase
     {
         private static readonly Regex NameRegex = new Regex(
             "<!--{{(.+?)}}-->",

@@ -1,10 +1,9 @@
 ﻿using System.IO;
 using System.Text;
-using Euler.Program.Templating;
 
 namespace Euler.Program.Processing
 {
-    public sealed class FileSaver
+    internal sealed class FileSaver
     {
         private readonly string _path;
 

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Net;
 using System.Text;
-using Euler.Program.Templating;
 using Xunit;
 
 namespace Euler.Program.Processing
 {
-    public sealed class Downloader: IDisposable
+    internal sealed class Downloader: IDisposable
     {
         private readonly WebClient _web;
 
@@ -37,17 +36,22 @@ namespace Euler.Program.Processing
         {
             problem.Html = _web.DownloadString(problem.Url);
         }
+    }
 
 
+    public sealed class DownloaderTests
+    {
         [Fact]
         public void Test()
         {
+            using (var d = new Downloader())
+            {
+                var problem = new ProblemModel(1);
+                d.Process(problem);
 
-            var problem = new ProblemModel(1);
-            Process(problem);
-
-            Assert.NotNull(problem.Html);
-            Assert.True(problem.Html.Contains("</html>"));
+                Assert.NotNull(problem.Html);
+                Assert.True(problem.Html.Contains("</html>"));
+            }
         }
     }
 }

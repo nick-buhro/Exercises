@@ -3,13 +3,12 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Euler.Program.Processing.TestCases.HtmlParser;
-using Euler.Program.Templating;
 using HtmlAgilityPack;
 using Xunit;
 
 namespace Euler.Program.Processing
 {
-    public sealed class HtmlParser
+    internal sealed class HtmlParser
     {
         private readonly HtmlDocument _doc = new HtmlDocument();
 
@@ -76,8 +75,11 @@ namespace Euler.Program.Processing
                 .Replace("  ", " ")
                 .Trim();
         }
+    }
 
 
+    public sealed class HtmlParserTests
+    {
         [Theory]
         [InlineData(1)]
         [InlineData(5)]
@@ -86,7 +88,7 @@ namespace Euler.Program.Processing
             var testCase = new TestCase(testCaseId);
 
             var problem = new ProblemModel(testCaseId) { Html = testCase.Html };
-            Process(problem);
+            new HtmlParser().Process(problem);
 
             Assert.Equal(testCase.Name, problem.Name);
             Assert.Equal(testCase.Description, problem.Description);

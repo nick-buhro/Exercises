@@ -1,6 +1,5 @@
 ﻿using System;
 using Euler.Program.Processing;
-using Euler.Program.Templating;
 
 namespace Euler.Program
 {

@@ -18,9 +18,9 @@ namespace Euler.Program.Processing
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "c:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
+    #line 1 "C:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
-    public partial class ClassGeneratorImpl : ClassGeneratorImplBase
+    internal partial class ClassGeneratorImpl : ClassGeneratorImplBase
     {
 #line hidden
         /// <summary>
@@ -30,49 +30,49 @@ namespace Euler.Program.Processing
         {
             this.Write("using System;\r\nusing Xunit;\r\n\r\nnamespace ");
             
-            #line 9 "c:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
+            #line 9 "C:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_problem.Namespace));
             
             #line default
             #line hidden
             this.Write("\r\n{\r\n    /// <summary>\r\n    /// ");
             
-            #line 12 "c:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
+            #line 12 "C:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_problem.Name));
             
             #line default
             #line hidden
             this.Write("\r\n    /// \r\n");
             
-            #line 14 "c:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
+            #line 14 "C:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
  foreach (var s in GetDescrLines()) { 
             
             #line default
             #line hidden
             this.Write("    /// ");
             
-            #line 15 "c:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
+            #line 15 "C:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(s));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 16 "c:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
+            #line 16 "C:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
  } 
             
             #line default
             #line hidden
             this.Write("    ///\r\n    /// <seealso href=\"");
             
-            #line 18 "c:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
+            #line 18 "C:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_problem.Url));
             
             #line default
             #line hidden
             this.Write("\"/>\r\n    /// </summary>\r\n    public sealed class ");
             
-            #line 20 "c:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
+            #line 20 "C:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_problem.ClassName));
             
             #line default
@@ -106,7 +106,7 @@ namespace Euler.Program.Processing
     /// Base class for this transformation
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
-    public class ClassGeneratorImplBase
+    internal class ClassGeneratorImplBase
     {
         #region Fields
         private global::System.Text.StringBuilder generationEnvironmentField;

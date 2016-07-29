@@ -1,8 +1,8 @@
 ﻿using Xunit;
 
-namespace Euler.Program.Templating
+namespace Euler.Program
 {
-    public sealed class ProblemModel
+    internal sealed class ProblemModel
     {
         public int Id { get; }
 
