@@ -81,6 +81,7 @@
     <Compile Include="Problem005.cs" />
     <Compile Include="Problem006.cs" />
     <Compile Include="Problem007.cs" />
+    <Compile Include="Problem008.cs" />
     <Compile Include="Problem323.cs" />
     <Compile Include="Program\Processing\ClassGenerator.cs" />
     <Compile Include="Program\Processing\ClassGeneratorImpl.cs">
