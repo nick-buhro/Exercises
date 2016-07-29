@@ -1,7 +1,7 @@
-﻿using System;
+﻿using System.Globalization;
 using Xunit;
 
-namespace NickBuhro.Exercises.ProjectEuler
+namespace Euler
 {
     /// <summary>
     /// Smallest multiple
@@ -15,39 +15,27 @@ namespace NickBuhro.Exercises.ProjectEuler
     /// </summary>
     public sealed class Problem005
     {
-        [Theory]
-        [InlineData(10, 2520)]
-        [InlineData(20, 232792560)]
-        public void Test(int n, long expected)
+        private const string Answer = @"232792560";
+
+        [Fact]
+        public void Test()
         {
-            var actual = GetFastAnswer(n);
+            var actual = GetAnswer();
+            Assert.Equal(Answer, actual);
+        }
+
+        [Fact]
+        public void WellKnownTest()
+        {
+            var expected = @"2520";
+            var actual = GetAnswer(10);
             Assert.Equal(expected, actual);
         }
 
-        public static long GetAnswer(int n = 20)
-        {
-            for (var i = n; i < int.MaxValue; i++)
-            {
-                var fail = false;
-                for (var j = 2; j <= n; j++)
-                {
-                    if ((i % j) != 0)
-                    {
-                        fail = true;
-                        break;
-                    }
-                }
-                if (!fail)
-                {
-                    return i;
-                }
-            }
-            throw new AnswerNotFoundException();
-        }
 
-        public static long GetFastAnswer(int n = 20)
+        public static string GetAnswer(int n = 20)
         {
-            var a = new int[n+1];
+            var a = new int[n + 1];
             for (var i = 2; i < a.Length; i++)
             {
                 if (a[i] < 0)
@@ -56,13 +44,13 @@ namespace NickBuhro.Exercises.ProjectEuler
                     continue;
                 }
                 //
-                for (var j = i+i; j < a.Length; j += i)
+                for (var j = i + i; j < a.Length; j += i)
                 {
                     a[j] = -1;
                 }
                 //
                 a[i] = 1;
-                for (var j = i*i; j < a.Length; j *= i)
+                for (var j = i * i; j < a.Length; j *= i)
                 {
                     a[i]++;
                 }
@@ -75,9 +63,9 @@ namespace NickBuhro.Exercises.ProjectEuler
                 {
                     a[i]--;
                     result *= i;
-                }                
+                }
             }
-            return result;
+            return result.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

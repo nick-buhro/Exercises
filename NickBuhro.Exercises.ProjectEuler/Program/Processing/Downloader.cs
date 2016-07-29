@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Net;
 using System.Text;
+using Euler.Program.Templating;
 using Xunit;
 
-namespace NickBuhro.Exercises.ProjectEuler.Helper.Code.Processing
+namespace Euler.Program.Processing
 {
     public sealed class Downloader: IDisposable
     {

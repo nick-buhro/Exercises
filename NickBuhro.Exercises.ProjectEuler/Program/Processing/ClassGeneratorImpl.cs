@@ -7,7 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 // ------------------------------------------------------------------------------
-namespace NickBuhro.Exercises.ProjectEuler.Helper.Code.Processing
+namespace Euler.Program.Processing
 {
     using System.Linq;
     using System.Text;
@@ -18,7 +18,7 @@ namespace NickBuhro.Exercises.ProjectEuler.Helper.Code.Processing
     /// Class to produce the template output
     /// </summary>
     
-    #line 1 "C:\Users\nbuhr\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler.Helper\Code\Processing\ClassGeneratorImpl.tt"
+    #line 1 "c:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.TextTemplating", "14.0.0.0")]
     public partial class ClassGeneratorImpl : ClassGeneratorImplBase
     {
@@ -28,52 +28,73 @@ namespace NickBuhro.Exercises.ProjectEuler.Helper.Code.Processing
         /// </summary>
         public virtual string TransformText()
         {
-            this.Write("using System;\r\nusing Xunit;\r\n\r\nnamespace NickBuhro.Exercises.ProjectEuler\r\n{\r\n   " +
-                    " /// <summary>\r\n    /// ");
+            this.Write("using System;\r\nusing Xunit;\r\n\r\nnamespace ");
             
-            #line 12 "C:\Users\nbuhr\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler.Helper\Code\Processing\ClassGeneratorImpl.tt"
+            #line 9 "c:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
+            this.Write(this.ToStringHelper.ToStringWithCulture(_problem.Namespace));
+            
+            #line default
+            #line hidden
+            this.Write("\r\n{\r\n    /// <summary>\r\n    /// ");
+            
+            #line 12 "c:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_problem.Name));
             
             #line default
             #line hidden
             this.Write("\r\n    /// \r\n");
             
-            #line 14 "C:\Users\nbuhr\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler.Helper\Code\Processing\ClassGeneratorImpl.tt"
+            #line 14 "c:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
  foreach (var s in GetDescrLines()) { 
             
             #line default
             #line hidden
             this.Write("    /// ");
             
-            #line 15 "C:\Users\nbuhr\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler.Helper\Code\Processing\ClassGeneratorImpl.tt"
+            #line 15 "c:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(s));
             
             #line default
             #line hidden
             this.Write("\r\n");
             
-            #line 16 "C:\Users\nbuhr\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler.Helper\Code\Processing\ClassGeneratorImpl.tt"
+            #line 16 "c:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
  } 
             
             #line default
             #line hidden
             this.Write("    ///\r\n    /// <seealso href=\"");
             
-            #line 18 "C:\Users\nbuhr\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler.Helper\Code\Processing\ClassGeneratorImpl.tt"
+            #line 18 "c:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_problem.Url));
             
             #line default
             #line hidden
             this.Write("\"/>\r\n    /// </summary>\r\n    public sealed class ");
             
-            #line 20 "C:\Users\nbuhr\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler.Helper\Code\Processing\ClassGeneratorImpl.tt"
+            #line 20 "c:\Users\bns\Documents\GitHub\Exercises\NickBuhro.Exercises.ProjectEuler\Program\Processing\ClassGeneratorImpl.tt"
             this.Write(this.ToStringHelper.ToStringWithCulture(_problem.ClassName));
             
             #line default
             #line hidden
-            this.Write("\r\n    {            \r\n        public void Test()\r\n        {\r\n    \r\n        }\r\n\r\n  " +
-                    "      public static long GetAnswer()\r\n        {\r\n            throw new NotImplem" +
-                    "entedException();\r\n        }\r\n    }\r\n}\r\n");
+            this.Write(@"
+    {            
+        private const string Answer = @"""";
+
+        [Fact]
+        public void Test()
+        {
+            var actual = GetAnswer();
+            Assert.Equal(Answer, actual);
+        }        
+
+        public static string GetAnswer()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
+");
             return this.GenerationEnvironment.ToString();
         }
     }

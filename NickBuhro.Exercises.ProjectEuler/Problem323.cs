@@ -2,7 +2,7 @@
 using System.Globalization;
 using Xunit;
 
-namespace NickBuhro.Exercises.ProjectEuler
+namespace Euler
 {
     /// <summary>
     /// Bitwise-OR operations on random integers
@@ -29,11 +29,11 @@ namespace NickBuhro.Exercises.ProjectEuler
         [Fact]
         public void Test()
         {
-            var actual = GetAnswer().ToString("F10",CultureInfo.InvariantCulture);
+            var actual = GetAnswer();
             Assert.Equal(Answer, actual);
         }
 
-        public static double GetAnswer()
+        public static string GetAnswer()
         {
             // We can calculate expected value by the formula:
             //
@@ -76,7 +76,7 @@ namespace NickBuhro.Exercises.ProjectEuler
                 e = e + summand;
                 paPrev = pa;
             }
-            return e;
+            return e.ToString("F10", CultureInfo.InvariantCulture);
         }
     }
 }

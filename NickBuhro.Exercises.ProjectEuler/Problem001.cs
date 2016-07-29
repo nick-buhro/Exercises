@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Globalization;
 using Xunit;
 
-namespace NickBuhro.Exercises.ProjectEuler
+namespace Euler
 {
     /// <summary>
     /// Multiples of 3 and 5 
@@ -15,31 +16,24 @@ namespace NickBuhro.Exercises.ProjectEuler
     /// </summary>
     public sealed class Problem001
     {
-        [Theory]
-        [InlineData(10, 23)]
-        [InlineData(1000, 233168)]
-        public void Test(int below, int expectedAnswer)
+        private const string Answer = @"233168";
+
+        [Fact]
+        public void Test()
         {
-            var actual = GetFastAnswer(below);
-            Assert.Equal(expectedAnswer, actual);
+            var actual = GetAnswer();
+            Assert.Equal(Answer, actual);
+        }
+
+        [Fact]
+        public void WellKnownTest()
+        {
+            var expected = "23";
+            var actual = GetAnswer(10);
+            Assert.Equal(expected, actual);
         }
         
-
-        public static int GetAnswer(int below = 1000)
-        {
-            var result = 0;
-            for (var i = 3; i < below; i++)
-            {
-                if (((i % 3) == 0) || ((i % 5) == 0))
-                {
-                    result += i;
-                }
-            }
-            return result;
-        }
-
-
-        public static int GetFastAnswer(int below = 1000)
+        private static string GetAnswer(int below = 1000)
         {
             var getSum = new Func<int, int>(multiplier =>
             {
@@ -47,7 +41,8 @@ namespace NickBuhro.Exercises.ProjectEuler
                 return multiplier * count * (count + 1) / 2;
             });
 
-            return getSum(3) + getSum(5) - getSum(15);
+            var result = getSum(3) + getSum(5) - getSum(15);
+            return result.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

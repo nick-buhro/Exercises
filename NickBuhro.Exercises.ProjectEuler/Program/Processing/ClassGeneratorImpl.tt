@@ -6,7 +6,7 @@
 using System;
 using Xunit;
 
-namespace NickBuhro.Exercises.ProjectEuler
+namespace <#= _problem.Namespace #>
 {
     /// <summary>
     /// <#= _problem.Name #>
@@ -19,12 +19,16 @@ namespace NickBuhro.Exercises.ProjectEuler
     /// </summary>
     public sealed class <#= _problem.ClassName #>
     {            
+        private const string Answer = @"";
+
+        [Fact]
         public void Test()
         {
-    
-        }
+            var actual = GetAnswer();
+            Assert.Equal(Answer, actual);
+        }        
 
-        public static long GetAnswer()
+        public static string GetAnswer()
         {
             throw new NotImplementedException();
         }

@@ -1,6 +1,7 @@
-﻿using Xunit;
+﻿using System.Globalization;
+using Xunit;
 
-namespace NickBuhro.Exercises.ProjectEuler
+namespace Euler
 {
     /// <summary>
     /// Even Fibonacci numbers
@@ -17,39 +18,24 @@ namespace NickBuhro.Exercises.ProjectEuler
     /// </summary>
     public sealed class Problem002
     {
-        [Theory]
-        [InlineData(10L, 10L)]
-        [InlineData(4000000L, 4613732L)]
-        public void Test(long limit, long expectedResult)
+        private const string Answer = @"4613732";
+        
+        [Fact]
+        public void Test()
         {
-            var actual = GetFastAnswer(limit);
-            Assert.Equal(expectedResult, actual);
+            var actual = GetAnswer();
+            Assert.Equal(Answer, actual);
         }
 
-        public static long GetAnswer(long limit = 4000000L)
+        [Fact]
+        public void WellKnownTest()
         {
-            long result = 0;
-
-            long prev = 1;
-            long current = 1;
-
-            while (current < limit)
-            {
-                if ((current & 1) == 0)
-                {
-                    result += current;
-                }
-
-                var c = current;
-                current += prev;
-                prev = c;
-            }
-
-            return result;
+            var expected = "10";
+            var actual = GetAnswer(10);
+            Assert.Equal(expected, actual);
         }
 
-
-        public static long GetFastAnswer(long limit = 4000000L)
+        public static string GetAnswer(long limit = 4000000L)
         {
             long result = 0;
 
@@ -64,11 +50,11 @@ namespace NickBuhro.Exercises.ProjectEuler
                 var c = current;
                 var p = prev;
 
-                prev = 2*c + p;
-                current = 3*c + 2*p;
+                prev = 2 * c + p;
+                current = 3 * c + 2 * p;
             }
 
-            return result;
+            return result.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

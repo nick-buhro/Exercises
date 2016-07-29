@@ -1,6 +1,7 @@
-﻿using Xunit;
+﻿using System.Globalization;
+using Xunit;
 
-namespace NickBuhro.Exercises.ProjectEuler
+namespace Euler
 {
     /// <summary>
     /// Largest prime factor
@@ -13,16 +14,24 @@ namespace NickBuhro.Exercises.ProjectEuler
     /// </summary>
     public sealed class Problem003
     {
-        [Theory]
-        [InlineData(13195L, 29L)]
-        [InlineData(600851475143L, 6857L)]
-        public void Test(long number, long largestPrimeFactor)
+        private const string Answer = @"6857";
+
+        [Fact]
+        public void Test()
         {
-            var actual = GetAnswer(number);
-            Assert.Equal(largestPrimeFactor, actual);
+            var actual = GetAnswer();
+            Assert.Equal(Answer, actual);
         }
 
-        public static long GetAnswer(long number = 600851475143L)
+        [Fact]
+        public void WellKnownTest()
+        {
+            var expected = "29";
+            var actual = GetAnswer(13195L);
+            Assert.Equal(expected, actual);
+        }
+
+        public static string GetAnswer(long number = 600851475143L)
         {
             var result = 1;
             for (var i = 2; i <= number; i++)
@@ -33,7 +42,7 @@ namespace NickBuhro.Exercises.ProjectEuler
                     result = i;
                 }
             }
-            return result;
+            return result.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

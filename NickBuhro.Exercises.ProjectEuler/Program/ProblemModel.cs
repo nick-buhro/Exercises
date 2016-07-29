@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace NickBuhro.Exercises.ProjectEuler.Helper.Code
+namespace Euler.Program.Templating
 {
     public sealed class ProblemModel
     {
@@ -18,6 +18,8 @@ namespace NickBuhro.Exercises.ProjectEuler.Helper.Code
         public string Url => @"https://projecteuler.net/problem=" + Id;
                                
         public string ClassName => "Problem" + Id.ToString("000");
+
+        public string Namespace => typeof (Problem001).Namespace;
 
         public string FileName => ClassName + ".cs";
 

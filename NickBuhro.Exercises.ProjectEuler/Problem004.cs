@@ -2,7 +2,7 @@
 using System.Globalization;
 using Xunit;
 
-namespace NickBuhro.Exercises.ProjectEuler
+namespace Euler
 {
     /// <summary>
     /// Largest palindrome product
@@ -16,17 +16,25 @@ namespace NickBuhro.Exercises.ProjectEuler
     /// </summary>
     public sealed class Problem004
     {
-        [Theory]
-        [InlineData(2, 9009)]
-        [InlineData(3, 906609)]
-        public void Test(int digits, int expectedAnswer)
-        {
-            var actual = GetAnswer(digits);
-            Assert.Equal(expectedAnswer, actual);
-        }
-        
+        private const string Answer = @"906609";
 
-        public static int GetAnswer(int digits = 3)
+        [Fact]
+        public void Test()
+        {
+            var actual = GetAnswer();
+            Assert.Equal(Answer, actual);
+        }
+
+        [Fact]
+        public void WellKnownTest()
+        {
+            var expected = "9009";
+            var actual = GetAnswer(2);
+            Assert.Equal(expected, actual);
+        }
+
+
+        public static string GetAnswer(int digits = 3)
         {
             var result = 0;
 
@@ -49,7 +57,7 @@ namespace NickBuhro.Exercises.ProjectEuler
                 }
             }
 
-            return result;
+            return result.ToString(CultureInfo.InvariantCulture);
         }
 
         private static bool IsPolindrome(int value)

@@ -1,34 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using Euler.Program.Processing.TestCases.HtmlParser;
+using Euler.Program.Templating;
 using HtmlAgilityPack;
-using NickBuhro.Exercises.ProjectEuler.Helper.Code.Processing.TestCases.HtmlParser;
 using Xunit;
 
-namespace NickBuhro.Exercises.ProjectEuler.Helper.Code.Processing
+namespace Euler.Program.Processing
 {
     public sealed class HtmlParser
     {
-        private readonly HtmlDocument Doc = new HtmlDocument();
+        private readonly HtmlDocument _doc = new HtmlDocument();
 
         public void Process(ProblemModel problem)
         {
-            Doc.LoadHtml(problem.Html);
+            _doc.LoadHtml(problem.Html);
             problem.Name = GetProblemName();
             problem.Description = GetProblemDescr();
         }
 
         private string GetProblemName()
         {
-            return Doc.DocumentNode.SelectSingleNode("//h2").InnerText;
+            return _doc.DocumentNode.SelectSingleNode("//h2").InnerText;
         }
 
         private string GetProblemDescr()
         {
-            var div = Doc.DocumentNode.SelectNodes("//div")
+            var div = _doc.DocumentNode.SelectNodes("//div")
                 .First(n => n.Attributes.Any(a => (a.Name == "class") && (a.Value == "problem_content")));
 
             var result = new StringBuilder();

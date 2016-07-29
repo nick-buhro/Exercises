@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NickBuhro.Exercises.ProjectEuler
+namespace Euler
 {
     public sealed class AnswerNotFoundException: Exception
     {        

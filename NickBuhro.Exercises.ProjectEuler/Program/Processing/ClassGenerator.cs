@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Euler.Program.Templating;
 
-namespace NickBuhro.Exercises.ProjectEuler.Helper.Code.Processing
+namespace Euler.Program.Processing
 {
     public sealed class ClassGenerator
     {

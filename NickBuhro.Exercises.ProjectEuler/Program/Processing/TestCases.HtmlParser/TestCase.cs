@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace NickBuhro.Exercises.ProjectEuler.Helper.Code.Processing.TestCases.HtmlParser
+namespace Euler.Program.Processing.TestCases.HtmlParser
 {
     public sealed class TestCase
     {
