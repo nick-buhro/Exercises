@@ -28,6 +28,13 @@ namespace <#= _problem.Namespace #>
             Assert.Equal(Answer, actual);
         }        
 
+		[Fact]
+        public void WellKnownTest()
+        {
+            var actual = GetAnswer();
+            Assert.Equal("", actual);
+        }
+
         public static string GetAnswer()
         {
             throw new NotImplementedException();

@@ -88,6 +88,13 @@ namespace Euler.Program.Processing
             Assert.Equal(Answer, actual);
         }        
 
+		[Fact]
+        public void WellKnownTest()
+        {
+            var actual = GetAnswer();
+            Assert.Equal("""", actual);
+        }
+
         public static string GetAnswer()
         {
             throw new NotImplementedException();
