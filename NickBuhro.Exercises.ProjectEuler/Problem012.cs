@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 using Xunit;
 
 namespace Euler
@@ -49,6 +52,90 @@ namespace Euler
 
         public static string GetAnswer(int divCount = 500)
         {
+            throw new NotImplementedException();
+        }
+
+
+
+
+        [Fact]
+        public void GetPosPowerSequenceTest2()
+        {
+            var actual = string.Join(",",
+                GetPosPowerSequence(2).Take(10));
+            Assert.Equal("1,2,1,3,1,2,1,4,1,2", actual);
+        }
+
+        [Fact]
+        public void GetPosPowerSequenceTest3()
+        {
+            var actual = string.Join(",",
+                GetPosPowerSequence(3).Take(27));
+            Assert.Equal("1,1,2,1,1,2,1,1,3,1,1,2,1,1,2,1,1,3,1,1,2,1,1,2,1,1,4", actual);
+        }
+
+        /// <summary>
+        /// Returns sequence of NON-ZERO powers of prime.
+        /// </summary>
+        private static IEnumerable<int> GetPosPowerSequence(int prime)
+        {
+            for (var i = 1; ; i++)
+            {
+                foreach (var value in GetPosPowerSequence(prime, i))
+                    yield return value;
+            }
+        }
+        
+        /// <summary>
+        /// Tree iteration from left to right.
+        /// </summary>
+        private static IEnumerable<int> GetPosPowerSequence(int prime, int depth)
+        {
+            if (depth == 1)
+            {
+                for (var i = 1; i < prime; i++)
+                    yield return 1;
+                yield break;
+            }
+
+            var stack = new Stack<Tuple<int, bool>>();   // Tuple<Value, Print>, call recursive if not only print.
+
+            for (var i = 1; i < prime; i++)
+            {
+                stack.Push(new Tuple<int, bool>(depth - 1, false));
+                stack.Push(new Tuple<int, bool>(depth, true));
+            }
+
+            while (stack.Count > 0)
+            {
+                var top = stack.Pop();
+                if (top.Item2)
+                {
+                    yield return top.Item1;
+                }
+                else if (top.Item1 == 1)
+                {
+                    for (var i = 1; i < prime; i++)
+                        yield return 1;
+                }
+                else
+                {
+                    stack.Push(new Tuple<int, bool>(top.Item1 - 1, false));
+                    for (var i = 1; i < prime; i++)
+                    {
+                        stack.Push(new Tuple<int, bool>(top.Item1, true));
+                        stack.Push(new Tuple<int, bool>(top.Item1 - 1, false));
+                    }
+                }             
+            }
+        }
+
+        
+
+        #region OLD solution (very slow)
+
+        public static string GetSlowAnswer(int divCount = 500)
+        {
             var getDivCount = new Func<int, int>(number =>
             {              
                 var counter = 2;
@@ -72,5 +159,7 @@ namespace Euler
 
             throw new AnswerNotFoundException();
         }
+
+        #endregion
     }
 }
