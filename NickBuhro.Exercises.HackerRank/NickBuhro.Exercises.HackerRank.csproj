@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9C39B435-086E-4FA1-A030-5C3817E97787}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{63A1B3E2-6E00-4FE0-ACD8-DFA34280B9C1}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Euler</RootNamespace>
-    <AssemblyName>NickBuhro.Exercises.ProjectEuler</AssemblyName>
+    <RootNamespace>HackerRank</RootNamespace>
+    <AssemblyName>NickBuhro.Exercises.HackerRank</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -32,14 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -66,51 +59,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <Compile Include="Algorithms\BitManipulation\AorB.cs" />
+    <Compile Include="Algorithms\BitManipulation\AorBTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnswerNotFoundException.cs" />
-    <Compile Include="Problem004.cs" />
-    <Compile Include="Problem001.cs" />
-    <Compile Include="Problem003.cs" />
-    <Compile Include="Problem002.cs" />
-    <Compile Include="Problem005.cs" />
-    <Compile Include="Problem006.cs" />
-    <Compile Include="Problem007.cs" />
-    <Compile Include="Problem008.cs" />
-    <Compile Include="Problem009.cs" />
-    <Compile Include="Problem010.cs" />
-    <Compile Include="Problem011.cs" />
-    <Compile Include="Problem012.cs" />
-    <Compile Include="Problem323.cs" />
-    <Compile Include="Program\Processing\ClassGenerator.cs" />
-    <Compile Include="Program\Processing\ClassGeneratorImpl.cs">
-      <DependentUpon>ClassGeneratorImpl.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Program\Processing\Downloader.cs" />
-    <Compile Include="Program\Processing\FileSaver.cs" />
-    <Compile Include="Program\Processing\HtmlParser.cs" />
-    <Compile Include="Program\Processing\TestCases.HtmlParser\TestCase.cs" />
-    <Compile Include="Program\Program.cs" />
-    <Compile Include="Program\ProblemModel.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Program\Processing\ClassGeneratorImpl.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>ClassGeneratorImpl.cs</LastGenOutput>
-    </Content>
-    <EmbeddedResource Include="Program\Processing\TestCases.HtmlParser\TestCase005.html" />
-    <EmbeddedResource Include="Program\Processing\TestCases.HtmlParser\TestCase001.html" />
+    <EmbeddedResource Include="Algorithms\BitManipulation\AorBTests_TestCase00_Input.txt" />
+    <EmbeddedResource Include="Algorithms\BitManipulation\AorBTests_TestCase00_Output.txt" />
+    <EmbeddedResource Include="Algorithms\BitManipulation\AorBTests_TestCase20_Output.txt" />
+    <EmbeddedResource Include="Algorithms\BitManipulation\AorBTests_TestCase20_Input.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
