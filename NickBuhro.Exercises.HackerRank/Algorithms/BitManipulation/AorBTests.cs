@@ -1,12 +1,11 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using Xunit;
 
 namespace HackerRank.Algorithms.BitManipulation
 {
     public sealed class AorBTests
     {
-        private struct TestCasePart
+        private struct TestCase
         {
             public int K { get; set; }
             public string A { get; set; }
@@ -18,9 +17,9 @@ namespace HackerRank.Algorithms.BitManipulation
             public string ResultB { get; set; }
         }
 
-        private TestCasePart[] ReadTestCase(string name)
+        private TestCase[] ReadTestCaseCollection(string name)
         {
-            TestCasePart[] result;
+            TestCase[] result;
             var type = typeof (AorBTests);
 
             var resourceName = type.FullName + "_" + name + "_Input.txt";
@@ -28,10 +27,10 @@ namespace HackerRank.Algorithms.BitManipulation
             using (var sr = new StreamReader(stream))
             {
                 var q = int.Parse(sr.ReadLine());
-                result = new TestCasePart[q];
+                result = new TestCase[q];
                 for (var i = 0; i < q; i++)
                 {
-                    result[i] = new TestCasePart
+                    result[i] = new TestCase
                     {
                         K = int.Parse(sr.ReadLine()),
                         A = sr.ReadLine(),
@@ -60,38 +59,28 @@ namespace HackerRank.Algorithms.BitManipulation
             return result;
         }
         
-        public void Test(string testName)
+        [Theory]
+        [InlineData("TestCase00")]
+        [InlineData("TestCase20")]
+        public void Test(string name)
         {
-            var testCaseCollection = ReadTestCase(testName);
-            foreach (var tc in testCaseCollection)
+            var tests = ReadTestCaseCollection(name);
+            foreach (var t in tests)
             {
                 string aResult;
                 string bResult;
 
-                var result = AorB.Calculate(tc.K, tc.A, tc.B, tc.C, out aResult, out bResult);
+                var result = AorB.Calculate(t.K, t.A, t.B, t.C, out aResult, out bResult);
 
-                Assert.Equal(tc.ResultSuccess, result);
+                Assert.Equal(t.ResultSuccess, result);
                 if (result)
                 {
-                    Assert.Equal(tc.ResultA, aResult);
-                    Assert.Equal(tc.ResultB, bResult);
+                    Assert.Equal(t.ResultA, aResult);
+                    Assert.Equal(t.ResultB, bResult);
                 }
             }
         }
-
-        [Fact]
-        public void Test00()
-        {
-            Test("TestCase00");
-        }
-
-        [Fact]
-        public void Test20()
-        {
-            Test("TestCase20");
-        }
-
-
+        
         [Theory]
         [InlineData('0', 0)]
         [InlineData('9', 9)]
@@ -99,8 +88,8 @@ namespace HackerRank.Algorithms.BitManipulation
         [InlineData('F', 15)]
         public void ConvertTest(char c, int b)
         {
-            Assert.Equal(AorB.CharToInt(c), b);
-            Assert.Equal(AorB.IntToChar(b), c);
+            Assert.Equal(b, AorB.CharToInt(c));
+            Assert.Equal(c, AorB.IntToChar(b));
         }
 
         [Theory]
@@ -113,7 +102,7 @@ namespace HackerRank.Algorithms.BitManipulation
         public void CharArrayToStringTest(string source, string target)
         {
             var a = source.ToCharArray();
-            Assert.Equal(AorB.CharArrayToString(a), target);
+            Assert.Equal(target, AorB.CharArrayToString(a));
         }
     }
 }

@@ -70,50 +70,19 @@ namespace HackerRank.Algorithms.BitManipulation
                 var b = CharToInt(arrB[i]);
                 var c = CharToInt(srcC[i]);
 
-                // A=0 B=0 C=1 -> B:=1
-                var m = ~a & ~b & c;
-                if (m > 0)
-                {
-                    k -= BitCountMatrix[m];
-                    b = b | m;
-                }
-
-                // A=0 B=1 C=0 -> B:=0
-                m = ~a & b & ~c;
-                if (m > 0)
-                {
-                    k -= BitCountMatrix[m];
-                    b = b & ~m;
-                }
-
-                // A=1 B=0 C=0 -> A:=0
-                m = a & ~b & ~c;
-                if (m > 0)
-                {
-                    k -= BitCountMatrix[m];
-                    a = a & ~m;
-                }
-
-                // A=1 B=1 C=0 -> A:=0 B:=0
-                m = a & b & ~c;
-                if (m > 0)
-                {
-                    k -= (BitCountMatrix[m] << 1);
-                    a = a & ~m;
-                    b = b & ~m;
-                }
-
-                // Finalization
-
-                if (k < 0)
-                {
-                    tgtA = null;
-                    tgtB = null;
-                    return false;
-                }
-
+                ApplyMandatoryManipulations(ref k, ref a, ref b, c);
+                
                 arrA[i] = IntToChar(a);
                 arrB[i] = IntToChar(b);
+            }
+
+            // Check manipulation overflow
+
+            if (k < 0)
+            {
+                tgtA = null;
+                tgtB = null;
+                return false;
             }
 
             // Second round - optional manipulations
@@ -124,33 +93,8 @@ namespace HackerRank.Algorithms.BitManipulation
                 var b = CharToInt(arrB[i]);
                 var c = CharToInt(srcC[i]);
 
-                var ac = a & c;
-                if (ac == 0) continue;
-
-                for (var m = 8; m > 0; m = m >> 1)
-                {
-                    // A=1 B=1 C=1 -> A:=0
-                    if ((m & ac & b) != 0)
-                    {
-                        if (k > 0)
-                        {
-                            k--;
-                            a = a & ~m;
-                        }
-                    }
-                    // A=1 B=0 C=1 -> A:=0 B:=1
-                    else if ((m & ac & ~b) != 0)
-                    {
-                        if (k > 1)
-                        {
-                            k -= 2;
-                            a = a & ~m;
-                            b = b | m;
-                        }
-                    }
-                }
-
-                //
+                ApplyOptionalManipulations(ref k, ref a, ref b, c);
+                
                 arrA[i] = IntToChar(a);
                 arrB[i] = IntToChar(b);
             }
@@ -160,6 +104,71 @@ namespace HackerRank.Algorithms.BitManipulation
             tgtA = CharArrayToString(arrA);
             tgtB = CharArrayToString(arrB);
             return true;
+        }
+
+        private static void ApplyMandatoryManipulations(ref int k, ref int a, ref int b, int c)
+        {
+            // A=0 B=0 C=1 -> B:=1
+            var m = ~a & ~b & c;
+            if (m > 0)
+            {
+                k -= BitCountMatrix[m];
+                b = b | m;
+            }
+
+            // A=0 B=1 C=0 -> B:=0
+            m = ~a & b & ~c;
+            if (m > 0)
+            {
+                k -= BitCountMatrix[m];
+                b = b & ~m;
+            }
+
+            // A=1 B=0 C=0 -> A:=0
+            m = a & ~b & ~c;
+            if (m > 0)
+            {
+                k -= BitCountMatrix[m];
+                a = a & ~m;
+            }
+
+            // A=1 B=1 C=0 -> A:=0 B:=0
+            m = a & b & ~c;
+            if (m > 0)
+            {
+                k -= (BitCountMatrix[m] << 1);
+                a = a & ~m;
+                b = b & ~m;
+            }
+        }
+
+        private static void ApplyOptionalManipulations(ref int k, ref int a, ref int b, int c)
+        {
+            var ac = a & c;
+            if (ac == 0) return;
+
+            for (var m = 8; m > 0; m = m >> 1)
+            {
+                // A=1 B=1 C=1 -> A:=0
+                if ((m & ac & b) != 0)
+                {
+                    if (k > 0)
+                    {
+                        k--;
+                        a = a & ~m;
+                    }
+                }
+                // A=1 B=0 C=1 -> A:=0 B:=1
+                else if ((m & ac & ~b) != 0)
+                {
+                    if (k > 1)
+                    {
+                        k -= 2;
+                        a = a & ~m;
+                        b = b | m;
+                    }
+                }
+            }
         }
 
         internal static string CharArrayToString(char[] arr)
