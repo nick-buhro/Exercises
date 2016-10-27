@@ -1,22 +1,21 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using Xunit;
 
-namespace LeetCode
+namespace LeetCode.Problem135
 {
-    public class Problem135Tests
+    public class Tests
     {
+        private readonly SolutionV2 _problem = new SolutionV2();
+
         [Fact]
         public void MyTest()
         {
             // Candies:     {1, 4, 3, 2, 1}
             int[] ratings = {1, 5, 4, 3, 2};
             const int expected = 11;
-
-            var p = new Problem135();
-            var actual = p.Candy(ratings);
+            
+            var actual = _problem.Candy(ratings);
 
             Assert.Equal(expected, actual);
         }
@@ -27,9 +26,8 @@ namespace LeetCode
             // Candies:     { 1, 2, 1 }
             int[] ratings = { 1, 2, 2 };
             const int expected = 4;
-
-            var p = new Problem135();
-            var actual = p.Candy(ratings);
+            
+            var actual = _problem.Candy(ratings);
 
             Assert.Equal(expected, actual);
         }
@@ -40,15 +38,14 @@ namespace LeetCode
             var ratings = GetTimeLimitTestRatings();
             const int expected = 40764;
 
-            var p = new Problem135();
-            var actual = p.Candy(ratings);
+            var actual = _problem.Candy(ratings);
             
             Assert.Equal(expected, actual);
         }
 
-        private static int[] GetTimeLimitTestRatings()
+        public static int[] GetTimeLimitTestRatings()
         {
-            var type = typeof(Problem135Tests);
+            var type = typeof(Tests);
 
             var resourceName = type.FullName + "_TimeLimitTest.txt";
             using (var stream = type.Assembly.GetManifestResourceStream(resourceName))

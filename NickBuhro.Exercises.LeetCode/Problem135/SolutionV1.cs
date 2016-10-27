@@ -1,21 +1,8 @@
 ﻿using System;
 
-namespace LeetCode
+namespace LeetCode.Problem135
 {
-    /// <summary>
-    /// 135. Candy
-    /// 
-    /// There are N children standing in a line. Each child is assigned a rating value.
-    /// 
-    /// You are giving candies to these children subjected to the following requirements:
-    /// - Each child must have at least one candy.
-    /// - Children with a higher rating get more candies than their neighbors.
-    ///
-    /// What is the minimum candies you must give?
-    /// 
-    /// <seealso href="https://leetcode.com/problems/candy/"/>
-    /// </summary>
-    public class Problem135
+    public class SolutionV1
     {
         public int Candy(int[] ratings)
         {
@@ -38,9 +25,7 @@ namespace LeetCode
                     break;
                 }
                 
-                var cmp = ratings[index].CompareTo(ratings[index + 1]);
-                
-                if (cmp == 0)
+                if (ratings[index] == ratings[index + 1])
                 {
                     var n = index - anchorIndex;
                     var qty = ((n) * (n + 1)) >> 1;
@@ -51,15 +36,13 @@ namespace LeetCode
                     anchorIndex = index;
                     anchorQty = 0;
                     down = false;
-                    continue;
                 }
-
-                if (down)
+                else if (down)
                 {
-                    if (cmp == -1)
+                    if (ratings[index] < ratings[index + 1])
                     {
                         var n = index - anchorIndex;
-                        var qty = ((n) * (n + 1)) >> 1;
+                        var qty = (n * (n + 1)) >> 1;
                         qty += Math.Max(anchorQty, n + 1);
                         qty--;
                         result += qty;
@@ -72,10 +55,10 @@ namespace LeetCode
                 }
                 else
                 {
-                    if (cmp == 1)
+                    if (ratings[index] > ratings[index + 1])
                     {
                         var n = index - anchorIndex;
-                        var qty = ((n) * (n + 1)) >> 1;
+                        var qty = (n * (n + 1)) >> 1;
                         result += qty;
 
                         anchorQty = n + 1;
