@@ -2,6 +2,22 @@
 {
     public class SolutionV2
     {
+        public int CountRangeSum(int[] nums, int lower, int upper)
+        {
+            var result = 0;
+            long height = 0;
+            var heightIndex = new NodeEx(0);
+
+            foreach (var n in nums)
+            {
+                height += n;
+                result += heightIndex.Count(height - upper, height - lower);
+                heightIndex.Add(height);
+            }
+
+            return result;
+        }
+
         private class Node
         {
             public static readonly Node Empty = new Node();
@@ -73,22 +89,6 @@
 
                 return _count + _left.Count(lower, upper) + _right.Count(lower, upper);
             }
-        }
-
-        public int CountRangeSum(int[] nums, int lower, int upper)
-        {
-            var result = 0;
-            long height = 0;
-            var heightIndex = new NodeEx(0);
-
-            foreach (var n in nums)
-            {
-                height += n;
-                result += heightIndex.Count(height - upper, height - lower);
-                heightIndex.Add(height);
-            }
-
-            return result;
         }
     }
 }
