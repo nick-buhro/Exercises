@@ -13,7 +13,7 @@
                 return new NodeEx(value);
             }
 
-            public virtual int Count(int lower, int upper)
+            public virtual int Count(long lower, long upper)
             {
                 return 0;
             }
@@ -52,7 +52,7 @@
                 return this;
             }
 
-            public override int Count(int lower, int upper)
+            public override int Count(long lower, long upper)
             {
                 if (_value < lower)
                 {
@@ -90,7 +90,7 @@
                     result++;
 
                 height += n;
-                result += heightIndex.Count(height - upper, height - lower);
+                result += heightIndex.Count((long)lower - n, (long)upper - n);
                 heightIndex = heightIndex.Add(height);
             }
 
