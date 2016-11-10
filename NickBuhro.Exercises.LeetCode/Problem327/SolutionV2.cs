@@ -86,7 +86,6 @@
                 {
                     return _count + _left.Count(lower, upper);
                 }
-
                 return _count + _left.Count(lower, upper) + _right.Count(lower, upper);
             }
         }
