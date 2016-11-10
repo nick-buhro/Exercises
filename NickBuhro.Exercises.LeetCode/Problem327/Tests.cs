@@ -4,7 +4,7 @@ namespace LeetCode.Problem327
 {
     public sealed class Tests
     {
-        private readonly Solution _problem = new Solution();
+        private readonly SolutionV1 _problem = new SolutionV1();
 
         [Fact]
         public void ExampleTest()

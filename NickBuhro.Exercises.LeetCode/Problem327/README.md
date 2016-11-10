@@ -9,6 +9,6 @@ Range sum `S(i, j)` is defined as the sum of the elements in nums between indice
 A naive algorithm of `O(n^2)` is trivial. You MUST do better than that.
 
 **Example**:
-Given ~~nums~~ = `[-2, 5, -1]`, lower = `-2`, upper = `2`,
+Given *nums* = `[-2, 5, -1]`, lower = `-2`, upper = `2`,
 Return `3`.
 The three ranges are : `[0, 0]`, `[2, 2]`, `[0, 2]` and their respective sums are: `-2, -1, 2`.
