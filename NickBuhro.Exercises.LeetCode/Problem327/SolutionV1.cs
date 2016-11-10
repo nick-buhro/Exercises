@@ -1,5 +1,8 @@
 ﻿namespace LeetCode.Problem327
 {
+    /// <summary>
+    /// Simple solution with O(n^2) complexity.
+    /// </summary>
     public class SolutionV1
     {
         public int CountRangeSum(int[] nums, int lower, int upper)
