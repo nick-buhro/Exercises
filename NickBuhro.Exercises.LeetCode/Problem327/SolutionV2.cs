@@ -8,7 +8,7 @@
 
             protected Node() { }
 
-            public virtual Node Add(int value)
+            public virtual Node Add(long value)
             {
                 return new NodeEx(value);
             }
@@ -21,13 +21,13 @@
 
         private sealed class NodeEx : Node
         {
-            private readonly int _value;
+            private readonly long _value;
             private Node _left;
             private Node _right;
 
             private int _count;
 
-            public NodeEx(int value)
+            public NodeEx(long value)
             {
                 _value = value;
                 _count = 1;
@@ -35,7 +35,7 @@
                 _right = Empty;
             }
 
-            public override Node Add(int value)
+            public override Node Add(long value)
             {
                 if (value < _value)
                 {
@@ -77,21 +77,15 @@
 
         public int CountRangeSum(int[] nums, int lower, int upper)
         {
-            if ((nums == null) || (nums.Length == 0))
-                return 0;
-
             var result = 0;
-            var height = 0;
-            var heightIndex = Node.Empty;
+            long height = 0;
+            var heightIndex = new NodeEx(0);
 
             foreach (var n in nums)
             {
-                if ((lower <= n) && (n <= upper))
-                    result++;
-
                 height += n;
-                result += heightIndex.Count((long)lower - n, (long)upper - n);
-                heightIndex = heightIndex.Add(height);
+                result += heightIndex.Count(height - upper, height - lower);
+                heightIndex.Add(height);
             }
 
             return result;

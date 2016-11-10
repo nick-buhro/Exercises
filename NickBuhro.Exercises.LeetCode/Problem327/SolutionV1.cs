@@ -10,7 +10,7 @@
             var result = 0;
             for (var i = 0; i < nums.Length; i++)
             {
-                var sum = 0;
+                long sum = 0;
                 for (var j = i; j < nums.Length; j++)
                 {
                     sum += nums[j];
