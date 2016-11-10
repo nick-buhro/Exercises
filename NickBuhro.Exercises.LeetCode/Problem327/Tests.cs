@@ -19,5 +19,18 @@ namespace LeetCode.Problem327
             Assert.Equal(expectedResult, actualResult);
         }
 
+        [Fact]
+        public void SubmissionFail01()
+        {
+            var nums = new[] { -1, 1 };
+            const int lower = 0;
+            const int upper = 0;
+
+            const int expectedResult = 1;
+
+            var actualResult = _problem.CountRangeSum(nums, lower, upper);
+            Assert.Equal(expectedResult, actualResult);
+        }
+
     }
 }

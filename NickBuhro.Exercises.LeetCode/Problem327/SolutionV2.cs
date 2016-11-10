@@ -2,13 +2,15 @@
 {
     public class SolutionV2
     {
-        private class ZeroNode
+        private class Node
         {
-            public static ZeroNode Empty = new ZeroNode();
+            public static readonly Node Empty = new Node();
 
-            public virtual ZeroNode Add(int value)
+            protected Node() { }
+
+            public virtual Node Add(int value)
             {
-                return new Node(value);
+                return new NodeEx(value);
             }
 
             public virtual int Count(int lower, int upper)
@@ -17,15 +19,15 @@
             }
         }
 
-        private sealed class Node : ZeroNode
+        private sealed class NodeEx : Node
         {
             private readonly int _value;
-            private ZeroNode _left;
-            private ZeroNode _right;
+            private Node _left;
+            private Node _right;
 
             private int _count;
 
-            public Node(int value)
+            public NodeEx(int value)
             {
                 _value = value;
                 _count = 1;
@@ -33,7 +35,7 @@
                 _right = Empty;
             }
 
-            public override ZeroNode Add(int value)
+            public override Node Add(int value)
             {
                 if (value < _value)
                 {
@@ -80,7 +82,7 @@
 
             var result = 0;
             var height = 0;
-            var heightIndex = ZeroNode.Empty;
+            var heightIndex = Node.Empty;
 
             foreach (var n in nums)
             {
