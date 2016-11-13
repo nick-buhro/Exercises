@@ -12,7 +12,7 @@ namespace LeetCode.Problem327
         [InlineData(new[] { -2147483647, 0, -2147483647, 2147483647 }, -564, 3864, 3)]
         public void Test(int[] nums, int lower, int upper, int expectedResult)
         {
-            var p = new SolutionV2();
+            var p = new SolutionV3();
             var actualResult = p.CountRangeSum(nums, lower, upper);
             Assert.Equal(expectedResult, actualResult);
         }
