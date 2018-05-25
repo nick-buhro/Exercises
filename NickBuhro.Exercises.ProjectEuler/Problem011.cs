@@ -38,16 +38,10 @@ namespace Euler
     /// </summary>
     public sealed class Problem011
     {            
-        private const string Answer = @"70600674";
+        private const int ExpectedResult = 70600674;
 
         [Fact]
         public void Test()
-        {
-            var actual = GetAnswer();
-            Assert.Equal(Answer, actual);
-        }        
-        
-        public static string GetAnswer()
         {
             var maxProduct = 1;
 
@@ -75,11 +69,11 @@ namespace Euler
                     }
                 }
             }
-
-            return maxProduct.ToString(CultureInfo.InvariantCulture);
+                        
+            Assert.Equal(ExpectedResult, maxProduct);
         }
 
-        
+
         private static readonly byte[][] M =
         {
             new byte[] {08, 02, 22, 97, 38, 15, 00, 40, 00, 75, 04, 05, 07, 78, 52, 12, 50, 77, 91, 08},

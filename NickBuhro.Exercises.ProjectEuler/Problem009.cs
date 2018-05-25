@@ -1,6 +1,4 @@
-﻿using System;
-using System.Globalization;
-using Xunit;
+﻿using Xunit;
 
 namespace Euler
 {
@@ -20,24 +18,15 @@ namespace Euler
     /// </summary>
     public sealed class Problem009
     {
-        private const string Answer = @"31875000";
-
-        [Fact]
-        public void Test()
+        [Theory]
+        [InlineData(60, 12)]
+        [InlineData(31875000, 1000)]
+        public static void Test(int expectedResult, int s)
         {
-            var actual = GetAnswer();
-            Assert.Equal(Answer, actual);
+            Assert.Equal(expectedResult, GetTripletProduct(s));
         }
 
-        [Fact]
-        public void WellKnownTest()
-        {
-            // 3*3 + 4*4 = 5*5
-            var actual = GetAnswer(12); // 12 = 3 + 4 + 5
-            Assert.Equal("60", actual); // 60 = 3 * 4 * 5
-        }
-
-        public static string GetAnswer(int s = 1000)
+        private static int GetTripletProduct(int s)
         {
             // a + b + c = s
             // a ≤ b < c < a+b
@@ -63,7 +52,7 @@ namespace Euler
                     var c = s - (a + b);
                     if ((a*a + b*b) == (c*c))
                     {
-                        return (a*b*c).ToString(CultureInfo.InvariantCulture);
+                        return (a*b*c);
                     }
                 }
             }

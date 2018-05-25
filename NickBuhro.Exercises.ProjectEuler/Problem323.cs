@@ -24,16 +24,10 @@ namespace Euler
     /// </summary>
     public sealed class Problem323
     {
-        private const string Answer = "6.3551758451";
+        private const string ExpectedResult = "6.3551758451";
 
         [Fact]
-        public void Test()
-        {
-            var actual = GetAnswer();
-            Assert.Equal(Answer, actual);
-        }
-
-        public static string GetAnswer()
+        public static void Test()
         {
             // We can calculate expected value by the formula:
             //
@@ -76,7 +70,9 @@ namespace Euler
                 e = e + summand;
                 paPrev = pa;
             }
-            return e.ToString("F10", CultureInfo.InvariantCulture);
+
+            var result = e.ToString("F10", CultureInfo.InvariantCulture);
+            Assert.Equal(ExpectedResult, result);
         }
     }
 }

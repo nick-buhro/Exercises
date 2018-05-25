@@ -19,25 +19,15 @@ namespace <#= _problem.Namespace #>
     /// </summary>
     public sealed class <#= _problem.ClassName #>
     {            
-        private const string Answer = @"";
+        private const string ExpectedResult = "";
 
         [Fact]
-        public void Test()
+        public static string Test()
         {
-            var actual = GetAnswer();
-            Assert.Equal(Answer, actual);
-        }        
+            // Write code here...
+            var result = "?";
 
-		[Fact]
-        public void WellKnownTest()
-        {
-            var actual = GetAnswer();
-            Assert.Equal("", actual);
-        }
-
-        public static string GetAnswer()
-        {
-            throw new NotImplementedException();
+            Assert.Equal(ExpectedResult, result);
         }
     }
 }

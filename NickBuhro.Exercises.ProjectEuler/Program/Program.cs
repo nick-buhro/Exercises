@@ -24,13 +24,13 @@ namespace Euler.Program
 
             try
             {
-                GenerateProblemClass(number);
+                GenerateProblemClass(number);                
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
-                Console.ReadKey();
+                Console.WriteLine(ex);                
             }
+            Console.ReadKey();
         }
 
         private static void GenerateProblemClass(int number)
@@ -45,7 +45,8 @@ namespace Euler.Program
                 downloader.Process(problem);
                 htmlParser.Process(problem);
                 generator.Process(problem);
-                saver.Process(problem);
+                //saver.Process(problem);
+                Console.WriteLine(problem.ClassCode);
             }
         }
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using Xunit;
 
 namespace Euler
@@ -14,24 +13,11 @@ namespace Euler
     /// <seealso href="https://projecteuler.net/problem=10"/>
     /// </summary>
     public sealed class Problem010
-    {            
-        private const string Answer = @"142913828922";
-
-        [Fact]
-        public void Test()
-        {
-            var actual = GetAnswer();
-            Assert.Equal(Answer, actual);
-        }        
-
-		[Fact]
-        public void WellKnownTest()
-        {
-            var actual = GetAnswer(10);
-            Assert.Equal("17", actual);
-        }
-
-        public static string GetAnswer(int limit = 2000000)
+    {   
+        [Theory]
+        [InlineData(17L, 10)]
+        [InlineData(142913828922L, 2000000)]
+        public static void Test(long expectedResult, int limit)
         {
             // Solution is based on Sieve of Eratosthenes alghoritm (https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes).
             // Optimization: array will be allocated only for the odd numbers.
@@ -65,7 +51,7 @@ namespace Euler
                 }
             }
 
-            return sum.ToString(CultureInfo.InvariantCulture);
+            Assert.Equal(expectedResult, sum);
         }
     }
 }

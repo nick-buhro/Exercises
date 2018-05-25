@@ -16,25 +16,10 @@ namespace Euler
     /// </summary>
     public sealed class Problem004
     {
-        private const string Answer = @"906609";
-
-        [Fact]
-        public void Test()
-        {
-            var actual = GetAnswer();
-            Assert.Equal(Answer, actual);
-        }
-
-        [Fact]
-        public void WellKnownTest()
-        {
-            var expected = "9009";
-            var actual = GetAnswer(2);
-            Assert.Equal(expected, actual);
-        }
-
-
-        public static string GetAnswer(int digits = 3)
+        [Theory]
+        [InlineData(9009, 2)]
+        [InlineData(906609, 3)]
+        public static void Test(int expectedResult, int digits)
         {
             var result = 0;
 
@@ -57,7 +42,7 @@ namespace Euler
                 }
             }
 
-            return result.ToString(CultureInfo.InvariantCulture);
+            Assert.Equal(expectedResult, result);
         }
 
         private static bool IsPolindrome(int value)

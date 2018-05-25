@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using Xunit;
+﻿using Xunit;
 
 namespace Euler
 {
@@ -15,25 +14,10 @@ namespace Euler
     /// </summary>
     public sealed class Problem005
     {
-        private const string Answer = @"232792560";
-
-        [Fact]
-        public void Test()
-        {
-            var actual = GetAnswer();
-            Assert.Equal(Answer, actual);
-        }
-
-        [Fact]
-        public void WellKnownTest()
-        {
-            var expected = @"2520";
-            var actual = GetAnswer(10);
-            Assert.Equal(expected, actual);
-        }
-
-
-        public static string GetAnswer(int n = 20)
+        [Theory]        
+        [InlineData(2520L, 10)]
+        [InlineData(232792560L, 20)]
+        public static void Test(long expectedResult, int n)
         {
             var a = new int[n + 1];
             for (var i = 2; i < a.Length; i++)
@@ -65,7 +49,8 @@ namespace Euler
                     result *= i;
                 }
             }
-            return result.ToString(CultureInfo.InvariantCulture);
+            
+            Assert.Equal(expectedResult, result);
         }
     }
 }

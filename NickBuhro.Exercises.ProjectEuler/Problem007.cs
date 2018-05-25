@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using Xunit;
 
 namespace Euler
@@ -14,24 +13,16 @@ namespace Euler
     /// <seealso href="https://projecteuler.net/problem=7"/>
     /// </summary>
     public sealed class Problem007
-    {            
-        private const string Answer = @"104743";
-
-        [Fact]
-        public void Test()
+    {
+        [Theory]
+        [InlineData(13, 6)]
+        [InlineData(104743, 10001)]
+        public static void Test(int expectedResult, int index)
         {
-            var actual = GetAnswer();
-            Assert.Equal(Answer, actual);
+            Assert.Equal(expectedResult, GetPrimeNumber(index));
         }
 
-        [Fact]
-        public void WellKnownTest()
-        {
-            var actual = GetAnswer(6);
-            Assert.Equal("13", actual);
-        }
-
-        public static string GetAnswer(int index = 10001)
+        private static int GetPrimeNumber(int index)
         {
             // Solution is based on Sieve of Eratosthenes alghoritm (https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes).
             // Sieve size can be calulated by the prime number theorem (https://en.wikipedia.org/wiki/Prime_number_theorem).
@@ -68,7 +59,7 @@ namespace Euler
                 count++;
                 if (count == index)
                 {
-                    return getNumberByIndex(i).ToString(CultureInfo.InvariantCulture);
+                    return getNumberByIndex(i);
                 }
             }
 

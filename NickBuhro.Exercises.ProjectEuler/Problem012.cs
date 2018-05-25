@@ -30,24 +30,16 @@ namespace Euler
     /// <seealso href="https://projecteuler.net/problem=12"/>
     /// </summary>
     public sealed class Problem012
-    {            
-        private const string Answer = @"76576500";
-                
-        [Fact]
-        public void Test()
+    {
+        [Theory]
+        [InlineData(28, 5)]
+        [InlineData(76576500, 500)]
+        public static void Test(int expectedResult, int divCount)
         {
-            var actual = GetAnswer();
-            Assert.Equal(Answer, actual);
-        }        
-
-		[Fact]
-        public void WellKnownTest()
-        {
-            var actual = GetAnswer(5);
-            Assert.Equal("28", actual);
+            Assert.Equal(expectedResult, GetAnswer(divCount));
         }
 
-        public static string GetAnswer(int divCount = 500)
+        private static int GetAnswer(int divCount)
         {
             var getDivCount = new Func<int, int>(number =>
             {              
@@ -66,7 +58,7 @@ namespace Euler
                 n = n + i;
                 if (getDivCount(n) > divCount)
                 {
-                    return n.ToString(CultureInfo.InvariantCulture);
+                    return n;
                 }
             }
 
