@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{C21E3784-AEBF-467E-9532-F516D9B3DF48}"
 	ProjectSection(SolutionItems) = preProject
@@ -10,11 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NickBuhro.Exercises.ProjectEuler", "NickBuhro.Exercises.ProjectEuler\NickBuhro.Exercises.ProjectEuler.csproj", "{9C39B435-086E-4FA1-A030-5C3817E97787}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectEuler", "ProjectEuler\ProjectEuler.csproj", "{9C39B435-086E-4FA1-A030-5C3817E97787}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NickBuhro.Exercises.HackerRank", "NickBuhro.Exercises.HackerRank\NickBuhro.Exercises.HackerRank.csproj", "{63A1B3E2-6E00-4FE0-ACD8-DFA34280B9C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HackerRank", "HackerRank\HackerRank.csproj", "{63A1B3E2-6E00-4FE0-ACD8-DFA34280B9C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NickBuhro.Exercises.LeetCode", "NickBuhro.Exercises.LeetCode\NickBuhro.Exercises.LeetCode.csproj", "{A3E9409F-BFF5-41F3-842C-9CA1DDE34A07}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetCode", "LeetCode\LeetCode.csproj", "{A3E9409F-BFF5-41F3-842C-9CA1DDE34A07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,5 +37,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2197AD89-A32F-4C97-A669-1CBCBDBD1C4B}
 	EndGlobalSection
 EndGlobal

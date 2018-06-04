@@ -70,10 +70,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Problem323.xlsx" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnswerNotFoundException.cs" />
+    <Compile Include="MyMath\DividerCountTable.cs" />
     <Compile Include="Problem004.cs" />
     <Compile Include="Problem001.cs" />
     <Compile Include="Problem003.cs" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Euler.MyMath;
+using System;
 using System.Globalization;
 using Xunit;
 
@@ -39,7 +40,38 @@ namespace Euler
             Assert.Equal(expectedResult, GetAnswer(divCount));
         }
 
+
         private static int GetAnswer(int divCount)
+        {
+            var limit = divCount * divCount;
+            var table = new DividerCountTable(limit);
+            
+            for (var i = 2; i < limit; i++)
+            {
+                int a, b;
+                if ((i & 1) == 1)
+                {
+                    a = i;
+                    b = (i + 1) >> 1;
+                }
+                else
+                {
+                    a = i >> 1;
+                    b = (i + 1);
+                }
+
+                if ((table[a] * table[b]) >= divCount)
+                {
+                    return a * b;
+                }
+            }
+
+
+            throw new AnswerNotFoundException();
+        }
+
+
+        private static int GetAnswerSlow(int divCount)
         {
             var getDivCount = new Func<int, int>(number =>
             {              
