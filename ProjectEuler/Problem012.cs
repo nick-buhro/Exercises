@@ -1,6 +1,5 @@
-﻿using Euler.MyMath;
-using System;
-using System.Globalization;
+﻿using System;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Euler
@@ -40,41 +39,22 @@ namespace Euler
             Assert.Equal(expectedResult, GetAnswer(divCount));
         }
 
-
-        private static int GetAnswer(int divCount)
+        [Theory]
+        [InlineData(3, 2)]      // 1, 3
+        [InlineData(6, 4)]      // 1, 2, 3, 6
+        [InlineData(28, 6)]     // 1, 2, 4, 7, 14, 28
+        [InlineData(300, 18)]   
+        public static void DividerCountTableTest(int number, int expected)
         {
-            var limit = divCount * divCount;
-            var table = new DividerCountTable(limit);
-            
-            for (var i = 2; i < limit; i++)
-            {
-                int a, b;
-                if ((i & 1) == 1)
-                {
-                    a = i;
-                    b = (i + 1) >> 1;
-                }
-                else
-                {
-                    a = i >> 1;
-                    b = (i + 1);
-                }
-
-                if ((table[a] * table[b]) >= divCount)
-                {
-                    return a * b;
-                }
-            }
-
-
-            throw new AnswerNotFoundException();
+            var table = CreateDividerCountTable(300);
+            Assert.Equal(expected, table[number]);
         }
 
 
         private static int GetAnswerSlow(int divCount)
         {
             var getDivCount = new Func<int, int>(number =>
-            {              
+            {
                 var counter = 2;
                 for (var i = 2; i <= (number >> 1); i++)
                 {
@@ -95,6 +75,104 @@ namespace Euler
             }
 
             throw new AnswerNotFoundException();
+        }
+
+
+        private static int GetAnswer(int divCount)
+        {
+            var limit = divCount * divCount;
+            var table = CreateDividerCountTable(limit);           
+
+            var start = (int)Math.Sqrt(divCount);
+            for (var i = start; i < limit; i++)
+            {
+                // We can calculate triangle[i] as i * (i + 1) / 2.
+                // So we will find 2 numbers for representation (by dividing even number by 2): triangle = a * b.
+                // Assuming that i and (i + 1) don't have common dividers, we can calculate DivCount[triangle] as DivCount[a] * DivCount[b].
+
+                int a, b;
+                if ((i & 1) == 1)
+                {
+                    a = i;
+                    b = (i + 1) >> 1;
+                }
+                else
+                {
+                    a = i >> 1;
+                    b = (i + 1);
+                }
+
+                if ((table[a] * table[b]) >= divCount)
+                {
+                    return a * b;
+                }
+            }
+            
+            throw new AnswerNotFoundException();
+        }
+        
+        /// <summary>
+        /// Prepare array with divider counts for numbers from 1 to limit, where
+        /// - index - requested number;
+        /// - value - divider count;
+        /// Example:
+        ///   result[6] == 4 because number 6 has dividers 1, 2, 3, 6.
+        /// </summary>        
+        private static int[] CreateDividerCountTable(int limit)
+        {
+            // Main idea:
+            // 1) Do number factorization: N = p1^k1 * p2^k2 * ... * pi^ki, where p - prime, k - power of prime.
+            //    For example: 300 = 2^2 * 3^1 * 5^2.
+            // 2) Calculate divider count: DivCount = (k1 + 1) * (k2 + 1) * ... * (ki + 1).
+            //    For example: DivCount(300) = DivCount(2^2 * 3 * 5^2) = (2 + 1) * (1 + 1) * (2 + 1) = 3 * 2 * 3 = 18.
+            //
+            // Implementation:
+            // 1) Calculate prime numbers from 2 to limit.
+            // 2) Init table with 1. Use it as accumulator.
+            // 3) Foreach prime calculate powers (for each number) and do multiplication.
+
+            var temp = new int[limit + 1];
+            var primes = new List<int>();
+
+            // Calculate prime numbers (Sieve of Eratosthenes)
+
+            for (var p = 2; p < temp.Length;)
+            {
+                primes.Add(p);
+
+                for (var i = p + p; i < temp.Length; i += p)
+                    temp[i] = 1;
+
+                do
+                {
+                    p++;
+                } while ((p < temp.Length) && (temp[p] == 1));
+            }
+
+            // Init result table
+
+            var table = new int[temp.Length];
+            for (var i = 0; i < table.Length; i++)
+                table[i] = 1;
+
+            // Update table
+
+            foreach (var p in primes)
+            {
+                for (var j = p; j < temp.Length; j += p)
+                    temp[j] = 2;
+
+                for (var pp = (long)p * p; pp < temp.Length; pp *= p)
+                {
+                    for (var j = pp; j < temp.Length; j += pp)
+                        temp[j] += 1;
+                }
+
+                for (var j = p; j < temp.Length; j += p)
+                    table[j] *= temp[j];
+            }            
+
+            return table;
         }
     }
 }
